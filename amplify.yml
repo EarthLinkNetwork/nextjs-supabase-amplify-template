@@ -8,6 +8,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - ls -la
+        - pwd
         - npm install
     build:
       commands:
