@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { SvgIcon } from '@/components/ui/SvgIcon'
 
 export function Navigation() {
   const pathname = usePathname()
@@ -39,17 +40,23 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="glass sticky top-0 z-50 border-b border-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 gradient-brand rounded-lg flex items-center justify-center">
-                <span className="text-white text-lg">🧸</span>
+    <nav className="sticky top-0 z-50 glass-premium border-b border-white/10">
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20">
+          <div className="flex items-center space-x-8 lg:space-x-12">
+            <Link href="/" className="flex items-center space-x-2 lg:space-x-4 group">
+              <div className="relative">
+                <div className="absolute inset-0 gradient-brand rounded-xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity"></div>
+                <div className="relative w-10 h-10 lg:w-12 lg:h-12 gradient-brand rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-glow-sm">
+                  <span className="text-white text-lg lg:text-2xl">🧸</span>
+                </div>
               </div>
-              <span className="text-xl font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
-                ともだちコレクション
-              </span>
+              <div>
+                <h1 className="text-lg lg:text-2xl font-display font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                  ともだちコレクション
+                </h1>
+                <p className="hidden lg:block text-xs text-gray-500 -mt-1">Premium Stuffed Animal Collection</p>
+              </div>
             </Link>
             
             {user && (
@@ -58,13 +65,16 @@ export function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                    className={`relative px-5 py-2.5 text-sm font-medium rounded-xl transition-all ${
                       pathname.startsWith(item.href)
-                        ? 'bg-brand-100 text-brand-700'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'text-brand-700'
+                        : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
-                    {item.label}
+                    {pathname.startsWith(item.href) && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-brand-100 to-purple-100 rounded-xl" />
+                    )}
+                    <span className="relative">{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -76,16 +86,22 @@ export function Navigation() {
               <>
                 <Link
                   href="/stuffed-animals/new"
-                  className="flex items-center gap-2 px-4 py-2 gradient-brand text-white text-sm font-medium rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5"
+                  className="relative group flex items-center gap-2 px-5 py-2.5 text-white text-sm font-medium rounded-xl overflow-hidden"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  新規登録
+                  <div className="absolute inset-0 gradient-brand" />
+                  <div className="absolute inset-0 gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative flex items-center gap-2">
+                  <SvgIcon size="base">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </SvgIcon>
+                    新規登録
+                  </span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-all"
+                  className="px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-xl hover:bg-gray-100/50 backdrop-blur transition-all"
                 >
                   ログアウト
                 </button>
@@ -93,9 +109,11 @@ export function Navigation() {
             ) : (
               <Link
                 href="/login"
-                className="px-5 py-2 gradient-brand text-white text-sm font-medium rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5"
+                className="relative group px-6 py-2.5 text-white text-sm font-medium rounded-xl overflow-hidden"
               >
-                ログイン
+                <div className="absolute inset-0 gradient-brand" />
+                <div className="absolute inset-0 gradient-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative">ログイン</span>
               </Link>
             )}
           </div>
