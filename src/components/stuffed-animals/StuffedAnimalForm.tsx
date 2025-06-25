@@ -68,8 +68,9 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            ともだちの名前 *
+          <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+            ともだちの名前
+            <span className="text-red-500 ml-1">*</span>
           </label>
           <input
             type="text"
@@ -78,14 +79,15 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
             placeholder="くまちゃん"
           />
         </div>
 
         <div>
-          <label htmlFor="familyDate" className="block text-sm font-medium text-gray-700 mb-2">
-            家族になった日 *
+          <label htmlFor="familyDate" className="block text-sm font-semibold text-gray-900 mb-2">
+            家族になった日
+            <span className="text-red-500 ml-1">*</span>
           </label>
           <input
             type="date"
@@ -94,14 +96,15 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
             value={formData.familyDate}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="mainImage" className="block text-sm font-medium text-gray-700 mb-2">
-          メイン写真URL *
+        <label htmlFor="mainImage" className="block text-sm font-semibold text-gray-900 mb-2">
+          メイン写真URL
+          <span className="text-red-500 ml-1">*</span>
         </label>
         <input
           type="text"
@@ -116,7 +119,7 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-semibold text-gray-900 mb-2">
           手に入れた場所
         </label>
         <div className="space-y-3">
@@ -125,7 +128,7 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
             name="location.name"
             value={formData.location.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
             placeholder="場所の名前（例：東京ディズニーランド）"
           />
           <input
@@ -133,14 +136,14 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
             name="location.address"
             value={formData.location.address}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
             placeholder="住所（例：千葉県浦安市舞浜1-1）"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="description" className="block text-sm font-semibold text-gray-900 mb-2">
           説明
         </label>
         <textarea
@@ -155,7 +158,7 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
       </div>
 
       <div>
-        <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="tags" className="block text-sm font-semibold text-gray-900 mb-2">
           タグ（カンマ区切り）
         </label>
         <input
@@ -176,27 +179,39 @@ export function StuffedAnimalForm({ onSubmit, isSubmitting, initialData }: Stuff
           name="isPublic"
           checked={formData.isPublic}
           onChange={handleChange}
-          className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+          className="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
         />
         <label htmlFor="isPublic" className="ml-2 block text-sm text-gray-700">
           公開する
         </label>
       </div>
 
-      <div className="flex justify-end space-x-4 pt-4">
+      <div className="flex justify-end space-x-4 pt-6 border-t border-gray-100">
         <button
           type="button"
           onClick={() => window.history.back()}
-          className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="px-6 py-3 text-gray-700 hover:bg-gray-100 rounded-xl font-medium transition-all"
         >
           キャンセル
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-md hover:from-pink-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
+          className="px-8 py-3 gradient-brand text-white rounded-xl font-medium hover:shadow-lg transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 inline-flex items-center gap-2"
         >
-          {isSubmitting ? '登録中...' : '登録する'}
+          {isSubmitting ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+              登録中...
+            </>
+          ) : (
+            <>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              登録する
+            </>
+          )}
         </button>
       </div>
     </form>

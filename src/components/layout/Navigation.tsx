@@ -39,24 +39,29 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="glass sticky top-0 z-50 border-b border-gray-100">
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link href="/" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
-              ともだちコレクション
+            <Link href="/" className="flex items-center space-x-2 group">
+              <div className="w-8 h-8 gradient-brand rounded-lg flex items-center justify-center">
+                <span className="text-white text-lg">🧸</span>
+              </div>
+              <span className="text-xl font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                ともだちコレクション
+              </span>
             </Link>
             
             {user && (
-              <div className="hidden md:flex space-x-6">
+              <div className="hidden md:flex items-center space-x-1">
                 {navItems.map(item => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
                       pathname.startsWith(item.href)
-                        ? 'text-purple-600'
-                        : 'text-gray-600 hover:text-purple-600'
+                        ? 'bg-brand-100 text-brand-700'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                     }`}
                   >
                     {item.label}
@@ -66,18 +71,21 @@ export function Navigation() {
             )}
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             {user ? (
               <>
                 <Link
                   href="/stuffed-animals/new"
-                  className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-sm rounded-md hover:from-pink-600 hover:to-purple-700"
+                  className="flex items-center gap-2 px-4 py-2 gradient-brand text-white text-sm font-medium rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5"
                 >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
                   新規登録
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-sm text-gray-600 hover:text-gray-800"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-all"
                 >
                   ログアウト
                 </button>
@@ -85,7 +93,7 @@ export function Navigation() {
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-sm rounded-md hover:from-pink-600 hover:to-purple-700"
+                className="px-5 py-2 gradient-brand text-white text-sm font-medium rounded-xl hover:shadow-lg transition-all hover:-translate-y-0.5"
               >
                 ログイン
               </Link>
