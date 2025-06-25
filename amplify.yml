@@ -8,7 +8,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm install
     build:
       commands:
         # Amplifyの環境変数を.env.productionファイルに書き出す
